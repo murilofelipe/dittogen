@@ -1,0 +1,5 @@
+{
+  "language": "pt",
+  "phonemes": ["a", "e", "i", "o", "u", "p", "b", "m", "f", "v", "t", "d", "n", "s", "z", "l", "r", "c", "g"],
+  "stopwords": ["um", "uma", "o", "a", "os", "as", "de", "do", "da", "em", "para"]
+}
