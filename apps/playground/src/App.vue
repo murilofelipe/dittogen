@@ -33,21 +33,36 @@ const extractContext = () => {
   const extractedSuffixes = new Set<string>();
 
   words.forEach(word => {
-    // 1. Keep the whole word
-    extractedRoots.add(word);
-    
-    // 2. Smart prefixes for roots
-    if (word.length >= 5) {
-      extractedRoots.add(word.substring(0, 4));
-    }
-    if (word.length >= 7) {
-      extractedRoots.add(word.substring(0, 3));
-    }
-    
-    // 3. Smart suffixes for longer words
-    if (word.length >= 6) {
-      extractedSuffixes.add(word.substring(word.length - 3));
-      extractedSuffixes.add(word.substring(word.length - 2));
+    extractedRoots.add(word); // Whole word
+
+    // Morphological extraction via Syllables
+    // Regex matches vowel groups surrounded by consonants
+    const syllables = word.match(/[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi);
+
+    if (syllables && syllables.length > 1) {
+      // ROOTS:
+      // First syllable if it has enough weight
+      if (syllables[0].length >= 3) {
+        extractedRoots.add(syllables[0]);
+      }
+      // First two syllables combined (very strong root)
+      if (syllables.length >= 2) {
+        extractedRoots.add(syllables[0] + syllables[1]);
+      }
+
+      // SUFFIXES:
+      // Last syllable
+      const lastSyl = syllables[syllables.length - 1];
+      if (lastSyl.length >= 2) {
+        extractedSuffixes.add(lastSyl);
+      }
+      // Last two syllables combined for longer words
+      if (syllables.length >= 3) {
+        extractedSuffixes.add(syllables[syllables.length - 2] + lastSyl);
+      }
+    } else if (word.length >= 5) {
+      // Fallback for weird words without vowels (rare but possible)
+      extractedRoots.add(word.substring(0, Math.floor(word.length / 2)));
     }
   });
 
