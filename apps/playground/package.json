@@ -10,7 +10,8 @@
   },
   "dependencies": {
     "@dittogen/core": "workspace:*",
-    "vue": "^3.5.12"
+    "vue": "^3.5.12",
+    "vue-i18n": "9"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.1.4",

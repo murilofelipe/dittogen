@@ -1,0 +1,20 @@
+{
+  "title": "Dittogen",
+  "subtitle": "Brand Name Generator",
+  "labels": {
+    "roots": "Roots (comma separated)",
+    "suffixes": "Suffixes (comma separated)",
+    "minLength": "Min Length",
+    "maxLength": "Max Length",
+    "count": "Count (Top N)",
+    "seed": "Seed"
+  },
+  "buttons": {
+    "generate": "Generate Brands"
+  },
+  "messages": {
+    "emptyState": "Adjust settings and click generate to see results",
+    "topCandidates": "Top {count} Candidates",
+    "score": "Score:"
+  }
+}
