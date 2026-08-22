@@ -34,14 +34,15 @@ Built as a `pnpm` workspace, the project is divided into:
 You can run Dittogen using Docker (recommended) or natively on your machine.
 
 ### Option 1: Running with Docker (Easiest)
-If you have Docker and Docker Compose installed, you don't need to install Node or pnpm locally.
+If you have Docker and Docker Compose installed, you don't need to install Node or pnpm locally. We provide a `Makefile` for convenience.
 
 ```bash
 git clone https://github.com/murilofelipe/dittogen.git
 cd dittogen
-docker compose up
+make up
 ```
-Open your browser at `http://localhost:5173`.
+This will start the container in the background (detached mode). Open your browser at `http://localhost:5173`. 
+When you are done, run `make down` to stop the container. You can also view logs with `make logs`.
 
 ### Option 2: Running Locally
 
