@@ -11,13 +11,21 @@ const contextText = ref<string>('');
 
 const extractContext = () => {
   if (!contextText.value) return;
-  // Clean up and keep words >= 4 chars
+
+  const stopwords = new Set([
+    'como', 'para', 'pela', 'pelo', 'toda', 'todo', 'todas', 'todos', 
+    'sera', 'tera', 'isso', 'este', 'esta', 'aquilo', 'aqui', 'seja',
+    'mais', 'menos', 'muito', 'pouco', 'sobre', 'entre', 'quando',
+    'onde', 'quem', 'qual', 'quais', 'that', 'this', 'from', 'have', 'will',
+    'with', 'what', 'your', 'their'
+  ]);
+
   const words = contextText.value
     .toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove accents
     .replace(/[^a-z]/gi, ' ')
     .split(/\s+/)
-    .filter(w => w.length >= 4);
+    .filter(w => w.length >= 4 && !stopwords.has(w));
     
   if (words.length === 0) return;
 
@@ -25,20 +33,29 @@ const extractContext = () => {
   const extractedSuffixes = new Set<string>();
 
   words.forEach(word => {
-    // Take whole word as root, and first half
+    // 1. Keep the whole word
     extractedRoots.add(word);
-    extractedRoots.add(word.substring(0, Math.ceil(word.length / 2) + 1));
     
-    // Take second half as suffix, and last 2 letters
-    extractedSuffixes.add(word.substring(Math.ceil(word.length / 2) - 1));
-    extractedSuffixes.add(word.substring(word.length - 2));
+    // 2. Smart prefixes for roots
+    if (word.length >= 5) {
+      extractedRoots.add(word.substring(0, 4));
+    }
+    if (word.length >= 7) {
+      extractedRoots.add(word.substring(0, 3));
+    }
+    
+    // 3. Smart suffixes for longer words
+    if (word.length >= 6) {
+      extractedSuffixes.add(word.substring(word.length - 3));
+      extractedSuffixes.add(word.substring(word.length - 2));
+    }
   });
 
-  // Common tech/brand suffixes
-  const genericSuffixes = ['ify', 'io', 'ia', 'ly', 'us', 'ex'];
+  // Base brand suffixes that always sound good
+  const genericSuffixes = ['ify', 'io', 'ia', 'ly', 'us', 'ex', 'app', 'go', 'hub', 'pro', 'tech', 'net'];
   genericSuffixes.forEach(s => extractedSuffixes.add(s));
 
-  roots.value = Array.from(extractedRoots).filter(r => r.length >= 2).join(', ');
+  roots.value = Array.from(extractedRoots).filter(r => r.length >= 3).join(', ');
   suffixes.value = Array.from(extractedSuffixes).filter(s => s.length >= 2).join(', ');
 };
 
