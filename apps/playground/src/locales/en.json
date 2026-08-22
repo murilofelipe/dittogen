@@ -2,6 +2,7 @@
   "title": "Dittogen",
   "subtitle": "Brand Name Generator",
   "labels": {
+    "context": "Context / Idea",
     "roots": "Roots (comma separated)",
     "suffixes": "Suffixes (comma separated)",
     "minLength": "Min Length",
@@ -10,9 +11,11 @@
     "seed": "Seed"
   },
   "buttons": {
+    "extract": "✨ Auto-Fill",
     "generate": "Generate Brands"
   },
   "tooltips": {
+    "context": "Type a sentence about your project. We'll automatically extract roots and suffixes for you!",
     "roots": "Core words or prefixes that represent your brand's essence.",
     "suffixes": "Word endings added to roots to make them sound like a brand.",
     "minLength": "Minimum character length for generated names.",

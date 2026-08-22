@@ -2,6 +2,7 @@
   "title": "Dittogen",
   "subtitle": "Gerador de Nomes de Marcas",
   "labels": {
+    "context": "Descreva sua Ideia",
     "roots": "Raízes (separadas por vírgula)",
     "suffixes": "Sufixos (separados por vírgula)",
     "minLength": "Tam. Mínimo",
@@ -10,9 +11,11 @@
     "seed": "Seed"
   },
   "buttons": {
+    "extract": "✨ Preenchimento Mágico",
     "generate": "Gerar Marcas"
   },
   "tooltips": {
+    "context": "Digite uma frase sobre seu projeto. Extrairemos raízes e sufixos automaticamente!",
     "roots": "Palavras base ou prefixos que representam a essência da sua marca.",
     "suffixes": "Terminações adicionadas às raízes para dar sonoridade de marca.",
     "minLength": "Tamanho mínimo de caracteres permitidos no nome final.",
