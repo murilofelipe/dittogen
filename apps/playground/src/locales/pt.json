@@ -1,0 +1,20 @@
+{
+  "title": "Dittogen",
+  "subtitle": "Gerador de Nomes de Marcas",
+  "labels": {
+    "roots": "Raízes (separadas por vírgula)",
+    "suffixes": "Sufixos (separados por vírgula)",
+    "minLength": "Tam. Mínimo",
+    "maxLength": "Tam. Máximo",
+    "count": "Qtd (Top N)",
+    "seed": "Seed"
+  },
+  "buttons": {
+    "generate": "Gerar Marcas"
+  },
+  "messages": {
+    "emptyState": "Ajuste as configurações e clique em gerar para ver os resultados",
+    "topCandidates": "Top {count} Candidatos",
+    "score": "Pontuação:"
+  }
+}
