@@ -14,6 +14,7 @@
   "buttons": {
     "extract": "✨ Preenchimento Mágico",
     "reroll": "Rodar novamente / Embaralhar",
+    "randomize": "Aleatorizar Seed",
     "generate": "Gerar Marcas",
     "copy": "Copiar Prompt"
   },
@@ -25,7 +26,8 @@
     "minLength": "Tamanho mínimo de caracteres permitidos no nome final.",
     "maxLength": "Tamanho máximo de caracteres permitidos no nome final.",
     "count": "Quantidade de nomes a exibir após todo o processo.",
-    "seed": "Número usado para inicializar o gerador. Mesma seed = mesmos resultados."
+    "seed": "Número usado para inicializar o gerador. Mesma seed = mesmos resultados.",
+    "randomizeSeed": "Clique para gerar uma nova seed e obter resultados diferentes."
   },
   "howItWorks": {
     "title": "Como funciona?",

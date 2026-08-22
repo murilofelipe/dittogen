@@ -14,6 +14,7 @@
   "buttons": {
     "extract": "✨ Auto-Fill",
     "reroll": "Re-roll / Shuffle",
+    "randomize": "Randomize Seed",
     "generate": "Generate Brands",
     "copy": "Copy Prompt"
   },
@@ -25,7 +26,8 @@
     "minLength": "Minimum character length for generated names.",
     "maxLength": "Maximum character length for generated names.",
     "count": "Number of top names to display after filtering.",
-    "seed": "A number used to initialize the generator. Same seed = same results."
+    "seed": "A number used to initialize the generator. Same seed = same results.",
+    "randomizeSeed": "Click to generate a new random seed for different results."
   },
   "howItWorks": {
     "title": "How it works",
