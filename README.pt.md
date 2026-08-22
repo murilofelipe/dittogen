@@ -34,14 +34,15 @@ Arquitetado via workspaces no `pnpm`, o projeto é dividido em:
 Você pode rodar o Dittogen usando Docker (recomendado) ou nativamente na sua máquina.
 
 ### Opção 1: Rodando com Docker (Mais Fácil)
-Se você tiver o Docker e o Docker Compose instalados, não precisa instalar o Node ou o pnpm na sua máquina.
+Se você tiver o Docker e o Docker Compose instalados, não precisa instalar o Node ou o pnpm na sua máquina. Criamos um `Makefile` para facilitar sua vida.
 
 ```bash
 git clone https://github.com/murilofelipe/dittogen.git
 cd dittogen
-docker compose up
+make up
 ```
-Acesse `http://localhost:5173`.
+Isso vai rodar o container em segundo plano (detached mode). Acesse `http://localhost:5173`.
+Quando terminar de usar, rode `make down` para desligar o container. Se quiser ver os logs, use `make logs`.
 
 ### Opção 2: Rodando Nativamente
 
