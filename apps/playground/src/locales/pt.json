@@ -38,6 +38,6 @@
     "emptyState": "Ajuste as configurações e clique em gerar para ver os resultados",
     "topCandidates": "Top {count} Candidatos",
     "score": "Pontuação:",
-    "promptTemplate": "Estou usando um gerador de nomes de marcas (naming) que extrai raízes morfológicas e sílabas de textos. Reescreva a ideia abaixo em um único parágrafo denso, criativo e rico em palavras, sinônimos e conceitos foneticamente interessantes relacionados ao tema. Evite palavras genéricas e conectivos desnecessários. Retorne APENAS o texto gerado.\n\nIdeia original: {context}"
+    "promptTemplate": "Estou criando o nome de uma marca e uso um gerador automático que extrai sílabas e raízes morfológicas do texto. Reescreva a ideia abaixo de forma natural, mas expandindo o vocabulário: inclua palavras-chave fortes, conceitos relacionados, sinônimos e termos interessantes do mesmo universo. O texto deve ser legível e fluido, não uma salada de palavras complexas e robóticas. Retorne APENAS a ideia reescrita e enriquecida, sem introduções.\n\nIdeia original: {context}"
   }
 }

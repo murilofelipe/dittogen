@@ -38,6 +38,6 @@
     "emptyState": "Adjust settings and click generate to see results",
     "topCandidates": "Top {count} Candidates",
     "score": "Score:",
-    "promptTemplate": "I am using a brand name generator that extracts morphological roots and phonetic syllables from text. Please rewrite the idea below into a single, dense paragraph filled with creative, evocative keywords, synonyms, and phonetically interesting concepts related to the theme. Avoid generic filler words. Output ONLY the rewritten text.\n\nOriginal Idea: {context}"
+    "promptTemplate": "I am brainstorming a brand name using a tool that extracts syllables and morphological roots from text. Please rewrite the idea below in a natural way, but expand its vocabulary: include strong keywords, related concepts, synonyms, and phonetically interesting terms from the same universe. Keep the text readable and clear, avoiding an overly robotic or dense buzzword salad. Return ONLY the enriched idea text, without any introductions.\n\nOriginal Idea: {context}"
   }
 }
