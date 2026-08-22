@@ -12,6 +12,21 @@
   "buttons": {
     "generate": "Generate Brands"
   },
+  "tooltips": {
+    "roots": "Core words or prefixes that represent your brand's essence.",
+    "suffixes": "Word endings added to roots to make them sound like a brand.",
+    "minLength": "Minimum character length for generated names.",
+    "maxLength": "Maximum character length for generated names.",
+    "count": "Number of top names to display after filtering.",
+    "seed": "A number used to initialize the generator. Same seed = same results."
+  },
+  "howItWorks": {
+    "title": "How it works",
+    "step1": "1. Combinatorics: Mixes roots and suffixes deterministically using the Seed.",
+    "step2": "2. Filtering: Discards names outside the length limits, with repeated letters, or bad words.",
+    "step3": "3. Scoring: Evaluates pronunceability (vowel ratio) and memorability (length).",
+    "step4": "4. Ranking: Uses Levenshtein Distance to ensure the Top N list has phonetically diverse names."
+  },
   "messages": {
     "emptyState": "Adjust settings and click generate to see results",
     "topCandidates": "Top {count} Candidates",

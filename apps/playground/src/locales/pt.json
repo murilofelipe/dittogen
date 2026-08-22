@@ -12,6 +12,21 @@
   "buttons": {
     "generate": "Gerar Marcas"
   },
+  "tooltips": {
+    "roots": "Palavras base ou prefixos que representam a essência da sua marca.",
+    "suffixes": "Terminações adicionadas às raízes para dar sonoridade de marca.",
+    "minLength": "Tamanho mínimo de caracteres permitidos no nome final.",
+    "maxLength": "Tamanho máximo de caracteres permitidos no nome final.",
+    "count": "Quantidade de nomes a exibir após todo o processo.",
+    "seed": "Número usado para inicializar o gerador. Mesma seed = mesmos resultados."
+  },
+  "howItWorks": {
+    "title": "Como funciona?",
+    "step1": "1. Geração: Cruza as raízes e sufixos de forma determinística usando a Semente (Seed).",
+    "step2": "2. Filtragem: Descarta nomes fora dos limites, com letras repetidas ou palavras ofensivas.",
+    "step3": "3. Scoring: Avalia a pronúncia (balanço de vogais) e facilidade de memorização.",
+    "step4": "4. Ranking: Usa distância fonética (Levenshtein) para garantir diversidade no Top N."
+  },
   "messages": {
     "emptyState": "Ajuste as configurações e clique em gerar para ver os resultados",
     "topCandidates": "Top {count} Candidatos",

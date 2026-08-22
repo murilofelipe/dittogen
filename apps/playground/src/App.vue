@@ -78,33 +78,51 @@ const generate = () => {
       <p class="text-sm text-slate-500 mb-4">{{ $t('subtitle') }}</p>
 
       <div class="flex flex-col gap-1">
-        <label class="text-sm font-semibold">{{ $t('labels.roots') }}</label>
+        <label class="text-sm font-semibold flex items-center gap-1">
+          {{ $t('labels.roots') }}
+          <svg :title="$t('tooltips.roots')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+        </label>
         <textarea v-model="roots" rows="3" class="border rounded-md p-2 text-sm bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
       </div>
 
       <div class="flex flex-col gap-1">
-        <label class="text-sm font-semibold">{{ $t('labels.suffixes') }}</label>
+        <label class="text-sm font-semibold flex items-center gap-1">
+          {{ $t('labels.suffixes') }}
+          <svg :title="$t('tooltips.suffixes')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+        </label>
         <textarea v-model="suffixes" rows="3" class="border rounded-md p-2 text-sm bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
       </div>
 
       <div class="grid grid-cols-2 gap-4">
         <div class="flex flex-col gap-1">
-          <label class="text-sm font-semibold">{{ $t('labels.minLength') }}</label>
+          <label class="text-sm font-semibold flex items-center gap-1">
+            {{ $t('labels.minLength') }}
+            <svg :title="$t('tooltips.minLength')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+          </label>
           <input type="number" v-model="minLength" class="border rounded-md p-2 text-sm bg-slate-50" />
         </div>
         <div class="flex flex-col gap-1">
-          <label class="text-sm font-semibold">{{ $t('labels.maxLength') }}</label>
+          <label class="text-sm font-semibold flex items-center gap-1">
+            {{ $t('labels.maxLength') }}
+            <svg :title="$t('tooltips.maxLength')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+          </label>
           <input type="number" v-model="maxLength" class="border rounded-md p-2 text-sm bg-slate-50" />
         </div>
       </div>
       
       <div class="grid grid-cols-2 gap-4">
         <div class="flex flex-col gap-1">
-          <label class="text-sm font-semibold">{{ $t('labels.count') }}</label>
+          <label class="text-sm font-semibold flex items-center gap-1">
+            {{ $t('labels.count') }}
+            <svg :title="$t('tooltips.count')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+          </label>
           <input type="number" v-model="count" class="border rounded-md p-2 text-sm bg-slate-50" />
         </div>
         <div class="flex flex-col gap-1">
-          <label class="text-sm font-semibold">{{ $t('labels.seed') }}</label>
+          <label class="text-sm font-semibold flex items-center gap-1">
+            {{ $t('labels.seed') }}
+            <svg :title="$t('tooltips.seed')" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+          </label>
           <input type="number" v-model="seed" class="border rounded-md p-2 text-sm bg-slate-50" />
         </div>
       </div>
@@ -112,6 +130,18 @@ const generate = () => {
       <button @click="generate" class="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md transition-all active:scale-95">
         {{ $t('buttons.generate') }}
       </button>
+
+      <!-- How it works -->
+      <div class="mt-8 bg-blue-50 p-4 rounded-lg border border-blue-100 text-xs text-blue-900 flex flex-col gap-2">
+        <h3 class="font-bold mb-1 flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg>
+          {{ $t('howItWorks.title') }}
+        </h3>
+        <p>{{ $t('howItWorks.step1') }}</p>
+        <p>{{ $t('howItWorks.step2') }}</p>
+        <p>{{ $t('howItWorks.step3') }}</p>
+        <p>{{ $t('howItWorks.step4') }}</p>
+      </div>
     </div>
 
     <!-- Main Content -->
