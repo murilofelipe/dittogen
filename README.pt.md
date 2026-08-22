@@ -31,24 +31,32 @@ Arquitetado via workspaces no `pnpm`, o projeto é dividido em:
 
 ## 🛠️ Como Usar
 
-### Pré-requisitos
+Você pode rodar o Dittogen usando Docker (recomendado) ou nativamente na sua máquina.
+
+### Opção 1: Rodando com Docker (Mais Fácil)
+Se você tiver o Docker e o Docker Compose instalados, não precisa instalar o Node ou o pnpm na sua máquina.
+
+```bash
+git clone https://github.com/murilofelipe/dittogen.git
+cd dittogen
+docker compose up
+```
+Acesse `http://localhost:5173`.
+
+### Opção 2: Rodando Nativamente
+
+**Pré-requisitos**
 - Node.js `18.x` ou superior
 - `pnpm` v9
 
-### Instalação
-
-Clone o repositório e baixe as dependências:
-
+**Instalação**
 ```bash
 git clone https://github.com/murilofelipe/dittogen.git
 cd dittogen
 pnpm install
 ```
 
-### Rodando o Playground (Frontend)
-
-Para abrir a interface visual:
-
+**Rodando o Playground (Frontend)**
 ```bash
 pnpm dev
 ```

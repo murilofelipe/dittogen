@@ -31,24 +31,32 @@ Built as a `pnpm` workspace, the project is divided into:
 
 ## 🛠️ Getting Started
 
-### Prerequisites
+You can run Dittogen using Docker (recommended) or natively on your machine.
+
+### Option 1: Running with Docker (Easiest)
+If you have Docker and Docker Compose installed, you don't need to install Node or pnpm locally.
+
+```bash
+git clone https://github.com/murilofelipe/dittogen.git
+cd dittogen
+docker compose up
+```
+Open your browser at `http://localhost:5173`.
+
+### Option 2: Running Locally
+
+**Prerequisites**
 - Node.js `18.x` or higher
 - `pnpm` v9
 
-### Installation
-
-Clone the repository and install the dependencies:
-
+**Installation**
 ```bash
 git clone https://github.com/murilofelipe/dittogen.git
 cd dittogen
 pnpm install
 ```
 
-### Running the Playground Locally
-
-To spin up the visual Vue interface:
-
+**Running the Playground**
 ```bash
 pnpm dev
 ```
