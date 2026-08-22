@@ -22,10 +22,6 @@ onMounted(() => {
   if (saved) favorites.value = JSON.parse(saved);
 });
 
-const toggleLang = () => {
-  locale.value = locale.value === 'en' ? 'pt' : 'en';
-};
-
 const toggleFavorite = (candidate: CandidateName) => {
   const index = favorites.value.findIndex(f => f.normalized === candidate.normalized);
   if (index >= 0) {
@@ -74,9 +70,10 @@ const generate = () => {
     <div class="w-80 bg-white shadow-xl p-6 flex flex-col gap-4 overflow-y-auto z-10">
       <div class="flex justify-between items-center">
         <h1 class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">{{ $t('title') }}</h1>
-        <button @click="toggleLang" class="text-xs font-bold text-slate-500 hover:text-blue-600 border px-2 py-1 rounded">
-          {{ locale === 'en' ? 'PT' : 'EN' }}
-        </button>
+        <select v-model="locale" class="text-sm font-medium text-slate-600 bg-white border border-slate-200 rounded px-2 py-1 cursor-pointer outline-none hover:border-blue-400 focus:ring-2 focus:ring-blue-500 transition-colors">
+          <option value="en">🇺🇸 EN</option>
+          <option value="pt">🇧🇷 PT</option>
+        </select>
       </div>
       <p class="text-sm text-slate-500 mb-4">{{ $t('subtitle') }}</p>
 
