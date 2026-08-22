@@ -3,6 +3,7 @@
   "subtitle": "Brand Name Generator",
   "labels": {
     "context": "Context / Idea",
+    "aiPrompt": "🤖 Optimize with AI",
     "roots": "Roots (comma separated)",
     "suffixes": "Suffixes (comma separated)",
     "minLength": "Min Length",
@@ -13,10 +14,12 @@
   "buttons": {
     "extract": "✨ Auto-Fill",
     "reroll": "Re-roll / Shuffle",
-    "generate": "Generate Brands"
+    "generate": "Generate Brands",
+    "copy": "Copy Prompt"
   },
   "tooltips": {
     "context": "Type a sentence about your project. We'll automatically extract roots and suffixes for you!",
+    "aiPrompt": "Copy this prompt to ChatGPT/Claude to get a richer, AI-optimized text tailored for our extractor.",
     "roots": "Core words or prefixes that represent your brand's essence.",
     "suffixes": "Word endings added to roots to make them sound like a brand.",
     "minLength": "Minimum character length for generated names.",
@@ -34,6 +37,7 @@
   "messages": {
     "emptyState": "Adjust settings and click generate to see results",
     "topCandidates": "Top {count} Candidates",
-    "score": "Score:"
+    "score": "Score:",
+    "promptTemplate": "I am using a brand name generator that extracts morphological roots and phonetic syllables from text. Please rewrite the idea below into a single, dense paragraph filled with creative, evocative keywords, synonyms, and phonetically interesting concepts related to the theme. Avoid generic filler words. Output ONLY the rewritten text.\n\nOriginal Idea: {context}"
   }
 }

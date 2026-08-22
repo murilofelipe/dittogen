@@ -5,9 +5,18 @@ import { NameGenerator, CandidateFilter, Scorer, Ranker, CandidateName } from '@
 import defaultRoots from '../../../config/roots.json';
 import defaultSuffixes from '../../../config/suffixes.json';
 
-const { locale } = useI18n();
+const { t, locale } = useI18n();
 
 const contextText = ref<string>('');
+const copied = ref<boolean>(false);
+
+const copyPrompt = () => {
+  if (!contextText.value) return;
+  const prompt = t('messages.promptTemplate', { context: contextText.value });
+  navigator.clipboard.writeText(prompt);
+  copied.value = true;
+  setTimeout(() => copied.value = false, 2000);
+};
 
 const shuffleAndLimit = (arr: string[], limit: number) => {
   return [...arr].sort(() => 0.5 - Math.random()).slice(0, limit);
@@ -157,6 +166,21 @@ const generate = () => {
           </button>
         </label>
         <textarea v-model="contextText" rows="2" class="border border-indigo-200 rounded-md p-2 text-sm bg-white focus:ring-2 focus:ring-indigo-500 outline-none placeholder:text-indigo-200" placeholder="e.g. padaria artesanal paulista"></textarea>
+        
+        <div v-if="contextText" class="mt-2 p-2 bg-indigo-100/50 border border-indigo-100 rounded-md">
+          <label class="text-xs font-semibold flex items-center justify-between text-indigo-900 mb-2">
+            <span class="flex items-center gap-1">
+              {{ $t('labels.aiPrompt') }}
+              <span :title="$t('tooltips.aiPrompt')" class="cursor-help flex items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-3.5 text-indigo-400"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg></span>
+            </span>
+            <button @click="copyPrompt" class="text-[10px] bg-white hover:bg-indigo-50 text-indigo-700 px-2 py-1 rounded border border-indigo-200 transition-colors font-bold">
+              {{ copied ? '✅' : $t('buttons.copy') }}
+            </button>
+          </label>
+          <div class="text-[10px] text-indigo-800/80 bg-white p-2 border border-indigo-100 rounded break-words whitespace-pre-wrap max-h-32 overflow-y-auto leading-relaxed">
+            {{ $t('messages.promptTemplate', { context: contextText }) }}
+          </div>
+        </div>
       </div>
 
       <div class="flex flex-col gap-1 mt-2">

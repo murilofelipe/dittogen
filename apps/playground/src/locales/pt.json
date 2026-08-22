@@ -3,6 +3,7 @@
   "subtitle": "Gerador de Nomes de Marcas",
   "labels": {
     "context": "Descreva sua Ideia",
+    "aiPrompt": "🤖 Otimizar com IA",
     "roots": "Raízes (separadas por vírgula)",
     "suffixes": "Sufixos (separados por vírgula)",
     "minLength": "Tam. Mínimo",
@@ -13,10 +14,12 @@
   "buttons": {
     "extract": "✨ Preenchimento Mágico",
     "reroll": "Rodar novamente / Embaralhar",
-    "generate": "Gerar Marcas"
+    "generate": "Gerar Marcas",
+    "copy": "Copiar Prompt"
   },
   "tooltips": {
     "context": "Digite uma frase sobre seu projeto. Extrairemos raízes e sufixos automaticamente!",
+    "aiPrompt": "Copie este prompt para o ChatGPT/Claude para obter um texto muito mais rico, otimizado para nosso extrator.",
     "roots": "Palavras base ou prefixos que representam a essência da sua marca.",
     "suffixes": "Terminações adicionadas às raízes para dar sonoridade de marca.",
     "minLength": "Tamanho mínimo de caracteres permitidos no nome final.",
@@ -34,6 +37,7 @@
   "messages": {
     "emptyState": "Ajuste as configurações e clique em gerar para ver os resultados",
     "topCandidates": "Top {count} Candidatos",
-    "score": "Pontuação:"
+    "score": "Pontuação:",
+    "promptTemplate": "Estou usando um gerador de nomes de marcas (naming) que extrai raízes morfológicas e sílabas de textos. Reescreva a ideia abaixo em um único parágrafo denso, criativo e rico em palavras, sinônimos e conceitos foneticamente interessantes relacionados ao tema. Evite palavras genéricas e conectivos desnecessários. Retorne APENAS o texto gerado.\n\nIdeia original: {context}"
   }
 }
