@@ -2,6 +2,8 @@
   "title": "Dittogen",
   "subtitle": "Gerador de Nomes de Marcas",
   "labels": {
+    "context": "Descreva sua Ideia",
+    "aiPrompt": "🤖 Otimizar com IA",
     "roots": "Raízes (separadas por vírgula)",
     "suffixes": "Sufixos (separados por vírgula)",
     "minLength": "Tam. Mínimo",
@@ -10,11 +12,36 @@
     "seed": "Seed"
   },
   "buttons": {
-    "generate": "Gerar Marcas"
+    "extract": "✨ Preenchimento Mágico",
+    "reroll": "Rodar novamente / Embaralhar",
+    "randomize": "Aleatorizar Seed",
+    "generate": "Gerar Marcas",
+    "copy": "Copiar Prompt",
+    "showAiPrompt": "✨ Otimizar com IA",
+    "hideAiPrompt": "Ocultar Prompt IA"
+  },
+  "tooltips": {
+    "context": "Digite uma frase sobre seu projeto. Extrairemos raízes e sufixos automaticamente!",
+    "aiPrompt": "Copie este prompt para o ChatGPT/Claude para obter um texto muito mais rico, otimizado para nosso extrator.",
+    "roots": "Palavras base ou prefixos que representam a essência da sua marca.",
+    "suffixes": "Terminações adicionadas às raízes para dar sonoridade de marca.",
+    "minLength": "Tamanho mínimo de caracteres permitidos no nome final.",
+    "maxLength": "Tamanho máximo de caracteres permitidos no nome final.",
+    "count": "Quantidade de nomes a exibir após todo o processo.",
+    "seed": "Número usado para inicializar o gerador. Mesma seed = mesmos resultados.",
+    "randomizeSeed": "Clique para gerar uma nova seed e obter resultados diferentes."
+  },
+  "howItWorks": {
+    "title": "Como funciona?",
+    "step1": "1. Geração: Cruza as raízes e sufixos de forma determinística usando a Semente (Seed).",
+    "step2": "2. Filtragem: Descarta nomes fora dos limites, com letras repetidas ou palavras ofensivas.",
+    "step3": "3. Scoring: Avalia a pronúncia (balanço de vogais) e facilidade de memorização.",
+    "step4": "4. Ranking: Usa distância fonética (Levenshtein) para garantir diversidade no Top N."
   },
   "messages": {
     "emptyState": "Ajuste as configurações e clique em gerar para ver os resultados",
     "topCandidates": "Top {count} Candidatos",
-    "score": "Pontuação:"
+    "score": "Pontuação:",
+    "promptTemplate": "Estou criando o nome de uma marca e uso um gerador automático que extrai sílabas e raízes morfológicas do texto. Reescreva a ideia abaixo de forma natural, mas expandindo o vocabulário: inclua palavras-chave fortes, conceitos relacionados, sinônimos e termos interessantes do mesmo universo. O texto deve ser legível e fluido, não uma salada de palavras complexas e robóticas. Retorne APENAS a ideia reescrita e enriquecida, sem introduções.\n\nIdeia original: {context}"
   }
 }

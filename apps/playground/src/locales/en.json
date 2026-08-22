@@ -2,6 +2,8 @@
   "title": "Dittogen",
   "subtitle": "Brand Name Generator",
   "labels": {
+    "context": "Context / Idea",
+    "aiPrompt": "🤖 Optimize with AI",
     "roots": "Roots (comma separated)",
     "suffixes": "Suffixes (comma separated)",
     "minLength": "Min Length",
@@ -10,11 +12,36 @@
     "seed": "Seed"
   },
   "buttons": {
-    "generate": "Generate Brands"
+    "extract": "✨ Auto-Fill",
+    "reroll": "Re-roll / Shuffle",
+    "randomize": "Randomize Seed",
+    "generate": "Generate Brands",
+    "copy": "Copy Prompt",
+    "showAiPrompt": "✨ Optimize with AI",
+    "hideAiPrompt": "Hide AI Prompt"
+  },
+  "tooltips": {
+    "context": "Type a sentence about your project. We'll automatically extract roots and suffixes for you!",
+    "aiPrompt": "Copy this prompt to ChatGPT/Claude to get a richer, AI-optimized text tailored for our extractor.",
+    "roots": "Core words or prefixes that represent your brand's essence.",
+    "suffixes": "Word endings added to roots to make them sound like a brand.",
+    "minLength": "Minimum character length for generated names.",
+    "maxLength": "Maximum character length for generated names.",
+    "count": "Number of top names to display after filtering.",
+    "seed": "A number used to initialize the generator. Same seed = same results.",
+    "randomizeSeed": "Click to generate a new random seed for different results."
+  },
+  "howItWorks": {
+    "title": "How it works",
+    "step1": "1. Combinatorics: Mixes roots and suffixes deterministically using the Seed.",
+    "step2": "2. Filtering: Discards names outside the length limits, with repeated letters, or bad words.",
+    "step3": "3. Scoring: Evaluates pronunceability (vowel ratio) and memorability (length).",
+    "step4": "4. Ranking: Uses Levenshtein Distance to ensure the Top N list has phonetically diverse names."
   },
   "messages": {
     "emptyState": "Adjust settings and click generate to see results",
     "topCandidates": "Top {count} Candidates",
-    "score": "Score:"
+    "score": "Score:",
+    "promptTemplate": "I am brainstorming a brand name using a tool that extracts syllables and morphological roots from text. Please rewrite the idea below in a natural way, but expand its vocabulary: include strong keywords, related concepts, synonyms, and phonetically interesting terms from the same universe. Keep the text readable and clear, avoiding an overly robotic or dense buzzword salad. Return ONLY the enriched idea text, without any introductions.\n\nOriginal Idea: {context}"
   }
 }
