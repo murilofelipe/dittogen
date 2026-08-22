@@ -6,3 +6,4 @@ export * from './scoring/index';
 export * from './similarity/index';
 export * from './ranking/index';
 export * from './export/index';
+export * from './providers/index';
