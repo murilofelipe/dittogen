@@ -1,4 +1,3 @@
-import { CandidateName } from '../models/index';
 
 export type AvailabilityStatus = 'available' | 'occupied' | 'unknown' | 'error' | 'not_supported';
 
@@ -38,7 +37,7 @@ export class MockDomainProvider implements DomainProvider {
 export class MockTrademarkProvider implements TrademarkProvider {
   async checkTrademark(name: string, region: string): Promise<AvailabilityResult> {
     await new Promise(resolve => setTimeout(resolve, 500));
-    const hasConflict = name.toLowerCase().includes('a') && name.toLowerCase().includes('o');
+    const hasConflict = name.toLowerCase().includes('a') && name.toLowerCase().includes('o') && region !== 'none';
     
     return {
       status: hasConflict ? 'occupied' : 'available',
