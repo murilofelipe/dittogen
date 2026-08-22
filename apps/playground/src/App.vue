@@ -9,9 +9,12 @@ const { locale } = useI18n();
 
 const contextText = ref<string>('');
 
-const extractContext = () => {
-  if (!contextText.value) return;
+const shuffleAndLimit = (arr: string[], limit: number) => {
+  return [...arr].sort(() => 0.5 - Math.random()).slice(0, limit);
+};
 
+const getContextWords = () => {
+  if (!contextText.value) return [];
   const stopwords = new Set([
     'como', 'para', 'pela', 'pelo', 'toda', 'todo', 'todas', 'todos', 
     'sera', 'tera', 'isso', 'este', 'esta', 'aquilo', 'aqui', 'seja',
@@ -19,59 +22,58 @@ const extractContext = () => {
     'onde', 'quem', 'qual', 'quais', 'that', 'this', 'from', 'have', 'will',
     'with', 'what', 'your', 'their'
   ]);
-
-  const words = contextText.value
+  return contextText.value
     .toLowerCase()
     .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // remove accents
     .replace(/[^a-z]/gi, ' ')
     .split(/\s+/)
     .filter(w => w.length >= 4 && !stopwords.has(w));
-    
-  if (words.length === 0) return;
+};
 
+const rerollRoots = () => {
+  const words = getContextWords();
+  if (!words.length) return;
   const extractedRoots = new Set<string>();
-  const extractedSuffixes = new Set<string>();
-
+  
   words.forEach(word => {
     extractedRoots.add(word); // Whole word
-
-    // Morphological extraction via Syllables
-    // Regex matches vowel groups surrounded by consonants
     const syllables = word.match(/[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi);
-
     if (syllables && syllables.length > 1) {
-      // ROOTS:
-      // First syllable if it has enough weight
-      if (syllables[0].length >= 3) {
-        extractedRoots.add(syllables[0]);
-      }
-      // First two syllables combined (very strong root)
-      if (syllables.length >= 2) {
-        extractedRoots.add(syllables[0] + syllables[1]);
-      }
-
-      // SUFFIXES:
-      // Last syllable
-      const lastSyl = syllables[syllables.length - 1];
-      if (lastSyl.length >= 2) {
-        extractedSuffixes.add(lastSyl);
-      }
-      // Last two syllables combined for longer words
-      if (syllables.length >= 3) {
-        extractedSuffixes.add(syllables[syllables.length - 2] + lastSyl);
-      }
+      if (syllables[0].length >= 3) extractedRoots.add(syllables[0]);
+      if (syllables.length >= 2) extractedRoots.add(syllables[0] + syllables[1]);
     } else if (word.length >= 5) {
-      // Fallback for weird words without vowels (rare but possible)
       extractedRoots.add(word.substring(0, Math.floor(word.length / 2)));
     }
   });
 
-  // Base brand suffixes that always sound good
+  const finalRoots = Array.from(extractedRoots).filter(r => r.length >= 3);
+  roots.value = shuffleAndLimit(finalRoots, 12).join(', ');
+};
+
+const rerollSuffixes = () => {
+  const words = getContextWords();
+  if (!words.length) return;
+  const extractedSuffixes = new Set<string>();
+
+  words.forEach(word => {
+    const syllables = word.match(/[^aeiouy]*[aeiouy]+(?:[^aeiouy]*$|[^aeiouy](?=[^aeiouy]))?/gi);
+    if (syllables && syllables.length > 1) {
+      const lastSyl = syllables[syllables.length - 1];
+      if (lastSyl.length >= 2) extractedSuffixes.add(lastSyl);
+      if (syllables.length >= 3) extractedSuffixes.add(syllables[syllables.length - 2] + lastSyl);
+    }
+  });
+
   const genericSuffixes = ['ify', 'io', 'ia', 'ly', 'us', 'ex', 'app', 'go', 'hub', 'pro', 'tech', 'net'];
   genericSuffixes.forEach(s => extractedSuffixes.add(s));
 
-  roots.value = Array.from(extractedRoots).filter(r => r.length >= 3).join(', ');
-  suffixes.value = Array.from(extractedSuffixes).filter(s => s.length >= 2).join(', ');
+  const finalSuffixes = Array.from(extractedSuffixes).filter(s => s.length >= 2);
+  suffixes.value = shuffleAndLimit(finalSuffixes, 12).join(', ');
+};
+
+const extractContext = () => {
+  rerollRoots();
+  rerollSuffixes();
 };
 
 const roots = ref<string>(defaultRoots.join(', '));
@@ -158,17 +160,27 @@ const generate = () => {
       </div>
 
       <div class="flex flex-col gap-1 mt-2">
-        <label class="text-sm font-semibold flex items-center gap-1">
-          {{ $t('labels.roots') }}
-          <span :title="$t('tooltips.roots')" class="cursor-help flex items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg></span>
+        <label class="text-sm font-semibold flex items-center justify-between">
+          <span class="flex items-center gap-1">
+            {{ $t('labels.roots') }}
+            <span :title="$t('tooltips.roots')" class="cursor-help flex items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg></span>
+          </span>
+          <button @click="rerollRoots" :title="$t('buttons.reroll')" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+          </button>
         </label>
         <textarea v-model="roots" rows="3" class="border rounded-md p-2 text-sm bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
       </div>
 
       <div class="flex flex-col gap-1">
-        <label class="text-sm font-semibold flex items-center gap-1">
-          {{ $t('labels.suffixes') }}
-          <span :title="$t('tooltips.suffixes')" class="cursor-help flex items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg></span>
+        <label class="text-sm font-semibold flex items-center justify-between">
+          <span class="flex items-center gap-1">
+            {{ $t('labels.suffixes') }}
+            <span :title="$t('tooltips.suffixes')" class="cursor-help flex items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg></span>
+          </span>
+          <button @click="rerollSuffixes" :title="$t('buttons.reroll')" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" /></svg>
+          </button>
         </label>
         <textarea v-model="suffixes" rows="3" class="border rounded-md p-2 text-sm bg-slate-50 focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
       </div>

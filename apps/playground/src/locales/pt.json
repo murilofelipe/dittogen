@@ -12,6 +12,7 @@
   },
   "buttons": {
     "extract": "✨ Preenchimento Mágico",
+    "reroll": "Rodar novamente / Embaralhar",
     "generate": "Gerar Marcas"
   },
   "tooltips": {

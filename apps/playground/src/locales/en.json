@@ -12,6 +12,7 @@
   },
   "buttons": {
     "extract": "✨ Auto-Fill",
+    "reroll": "Re-roll / Shuffle",
     "generate": "Generate Brands"
   },
   "tooltips": {
