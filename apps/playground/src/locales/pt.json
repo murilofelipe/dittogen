@@ -16,7 +16,9 @@
     "reroll": "Rodar novamente / Embaralhar",
     "randomize": "Aleatorizar Seed",
     "generate": "Gerar Marcas",
-    "copy": "Copiar Prompt"
+    "copy": "Copiar Prompt",
+    "showAiPrompt": "✨ Otimizar com IA",
+    "hideAiPrompt": "Ocultar Prompt IA"
   },
   "tooltips": {
     "context": "Digite uma frase sobre seu projeto. Extrairemos raízes e sufixos automaticamente!",

@@ -9,6 +9,7 @@ const { t, locale } = useI18n();
 
 const contextText = ref<string>('');
 const copied = ref<boolean>(false);
+const showAiPrompt = ref<boolean>(false);
 
 const copyPrompt = () => {
   if (!contextText.value) return;
@@ -171,7 +172,14 @@ const generate = () => {
         </label>
         <textarea v-model="contextText" rows="2" class="border border-indigo-200 rounded-md p-2 text-sm bg-white focus:ring-2 focus:ring-indigo-500 outline-none placeholder:text-indigo-200" placeholder="e.g. padaria artesanal paulista"></textarea>
         
-        <div v-if="contextText" class="mt-2 p-2 bg-indigo-100/50 border border-indigo-100 rounded-md">
+        <div v-if="contextText" class="flex justify-end mt-1">
+          <button @click="showAiPrompt = !showAiPrompt" class="text-[10px] text-indigo-600 hover:text-indigo-800 font-medium flex items-center gap-1 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-3"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09l2.846.813-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z" /></svg>
+            {{ showAiPrompt ? $t('buttons.hideAiPrompt') : $t('buttons.showAiPrompt') }}
+          </button>
+        </div>
+        
+        <div v-if="contextText && showAiPrompt" class="mt-2 p-2 bg-indigo-100/50 border border-indigo-100 rounded-md">
           <label class="text-xs font-semibold flex items-center justify-between text-indigo-900 mb-2">
             <span class="flex items-center gap-1">
               {{ $t('labels.aiPrompt') }}
@@ -245,13 +253,13 @@ const generate = () => {
               <span :title="$t('tooltips.seed')" class="cursor-help flex items-center"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-4 text-slate-400 cursor-help"><path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" /></svg></span>
             </span>
             <button @click="randomizeSeed" :title="$t('buttons.randomize')" class="text-xs text-slate-400 hover:text-blue-600 transition-colors">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="size-4">
-                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                <circle cx="8.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"></circle>
-                <circle cx="15.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"></circle>
-                <circle cx="15.5" cy="8.5" r="1.5" fill="currentColor" stroke="none"></circle>
-                <circle cx="8.5" cy="15.5" r="1.5" fill="currentColor" stroke="none"></circle>
-                <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none"></circle>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="size-4">
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
+                <path d="M8.5 8.5h.01"/>
+                <path d="M15.5 8.5h.01"/>
+                <path d="M15.5 15.5h.01"/>
+                <path d="M8.5 15.5h.01"/>
+                <path d="M12 12h.01"/>
               </svg>
             </button>
           </label>

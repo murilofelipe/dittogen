@@ -16,7 +16,9 @@
     "reroll": "Re-roll / Shuffle",
     "randomize": "Randomize Seed",
     "generate": "Generate Brands",
-    "copy": "Copy Prompt"
+    "copy": "Copy Prompt",
+    "showAiPrompt": "✨ Optimize with AI",
+    "hideAiPrompt": "Hide AI Prompt"
   },
   "tooltips": {
     "context": "Type a sentence about your project. We'll automatically extract roots and suffixes for you!",
