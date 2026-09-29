@@ -1,107 +1,107 @@
 <div align="center">
   <h1>✨ Dittogen</h1>
-  <p><strong>A deterministic, rule-based brand name generator engine.</strong></p>
+  <p><strong>Um motor determinístico de geração de nomes de marcas baseado em regras.</strong></p>
   
   [![CI](https://github.com/murilofelipe/dittogen/actions/workflows/ci.yml/badge.svg)](https://github.com/murilofelipe/dittogen/actions)
   [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-  <i>Read this in / Leia isto em: <a href="README.pt.md">Português 🇧🇷</a></i>
+  <i>Read this in / Leia isto em: <a href="README.en.md">English 🇺🇸</a></i>
 </div>
 
 <br />
 
-**Dittogen** is a monorepo workspace for generating, scoring, filtering, and ranking brand names programmatically. Unlike LLM-based approaches, Dittogen leverages combinatorial rules, phonetic heuristics, and deterministic seeds to yield highly brandable, pronounceable, and memorable names at scale.
+O **Dittogen** é um workspace monorepo voltado para a geração, pontuação, filtragem e rankeamento programático de nomes de marcas (naming). Ao contrário de abordagens baseadas puramente em LLMs, o Dittogen utiliza regras combinatórias determinísticas, heurísticas fonéticas e limites estritos para extrair, em grande escala, nomes curtos, pronunciáveis e fáceis de memorizar.
 
-## 🚀 Features
+## 🚀 Funcionalidades
 
-- **Combinatorial Generation**: Mixes roots and suffixes deterministically using PRNG seeds.
-- **Advanced Filtering**: Excludes names based on length, repetitive characters, stopwords, and custom RegEx patterns.
-- **Heuristic Scoring (0-100)**: Evaluates vowel/consonant ratios, length, and spelling to score pronunceability and memorability.
-- **Phonetic Deduplication**: Uses Levenshtein Distance to enforce diversity in the final top-ranking lists.
-- **External Integration Abstractions**: Abstract classes ready to plug in Domain, Social Media, and Trademark verification tools.
-- **Vue 3 Playground**: A visually rich, interactive web playground to tweak configurations on the fly and save your favorite brands locally.
+- **Geração Combinatória**: Cruza raízes e sufixos de forma determinística utilizando _seeds_ (PRNG).
+- **Filtros Avançados**: Descarta nomes ruins baseando-se em limites de caracteres, repetição excessiva de letras, normalização Unicode (remoção de acentos), stopwords e Regex.
+- **Scoring Heurístico (0-100)**: Avalia o balanço entre consoantes e vogais, tamanho ideal da string e ortografia para dar uma nota de "Pronúncia" e "Memorização".
+- **Deduplicação Fonética**: Utiliza a Distância de Levenshtein para impedir que o "Top N" fique lotado com nomes praticamente idênticos.
+- **Abstrações Externas**: Classes (Providers) prontas para plugar integrações de verificação de Domínio, Redes Sociais e INPI/Marcas futuramente.
+- **Playground em Vue 3**: Uma interface interativa super rápida para você testar as gerações na hora e salvar seus favoritos no LocalStorage.
 
-## 📁 Repository Structure
+## 📁 Estrutura do Repositório
 
-Built as a `pnpm` workspace, the project is divided into:
+Arquitetado via workspaces no `pnpm`, o projeto é dividido em:
 
-- **`packages/core`**: The framework-agnostic TypeScript logic containing the Engine, Models, Filters, Scorer, and Providers.
-- **`apps/playground`**: A Vue 3 + Tailwind CSS static application that acts as a UI for the core engine. Can be exported as a Web Component (`<dittogen-generator>`).
-- **`config/`**: JSON linguistic datasets (roots, suffixes, languages).
+- **`packages/core`**: Biblioteca Typescript independente de framework. Contém toda a lógica e algoritmos matemáticos do gerador.
+- **`apps/playground`**: Aplicativo estático feito em Vue 3 + TailwindCSS. Pode ser compilado como um Web Component (`<dittogen-generator>`).
+- **`config/`**: Dicionários de raízes, sufixos, fonemas e stopwords em JSON.
 
-## 🛠️ Getting Started
+## 🛠️ Como Usar
 
-You can run Dittogen using Docker (recommended) or natively on your machine.
+Você pode rodar o Dittogen usando Docker (recomendado) ou nativamente na sua máquina.
 
-### Option 1: Running with Docker (Easiest)
-If you have Docker and Docker Compose installed, you don't need to install Node or pnpm locally. We provide a `Makefile` for convenience.
+### Opção 1: Rodando com Docker (Mais Fácil)
+Se você tiver o Docker e o Docker Compose instalados, não precisa instalar o Node ou o pnpm na sua máquina. Criamos um `Makefile` para facilitar sua vida.
 
 ```bash
 git clone https://github.com/murilofelipe/dittogen.git
 cd dittogen
 make up
 ```
-This will start the container in the background (detached mode). Open your browser at `http://localhost:5173`. 
-When you are done, run `make down` to stop the container. You can also view logs with `make logs`.
+Isso vai rodar o container em segundo plano (detached mode). Acesse `http://localhost:5173`.
+Quando terminar de usar, rode `make down` para desligar o container. Se quiser ver os logs, use `make logs`.
 
-### Option 2: Running Locally
+### Opção 2: Rodando Nativamente
 
-**Prerequisites**
-- Node.js `18.x` or higher
+**Pré-requisitos**
+- Node.js `18.x` ou superior
 - `pnpm` v9
 
-**Installation**
+**Instalação**
 ```bash
 git clone https://github.com/murilofelipe/dittogen.git
 cd dittogen
 pnpm install
 ```
 
-**Running the Playground**
+**Rodando o Playground (Frontend)**
 ```bash
 pnpm dev
 ```
-Open your browser at `http://localhost:5173`. You can tweak roots, limits, and seeds to watch the scoring algorithm extract the Top N brands in real time.
+Acesse `http://localhost:5173`. Você pode brincar com as combinações de sufixos e raízes diretamente do painel lateral.
 
-### Build & Test
+### Build & Testes
 
-The monorepo uses Vitest for testing and TypeScript/Vite for building. You can run commands globally from the root:
+Nós utilizamos o Vitest para testes unitários e ESLint para padronização. Tudo pode ser orquestrado direto da raiz:
 
 ```bash
-# Run ESLint across the workspace
+# Roda a validação de lint em todo o repositório
 pnpm lint
 
-# Run all Unit and Integration tests
+# Roda a suíte de testes do core
 pnpm test
 
-# Build core types and the playground app
+# Compila os tipos TypeScript e builda o Frontend
 pnpm build
 ```
 
-## 🧠 Core Architecture
+## 🧠 Arquitetura do Core
 
-If you want to use the engine programmatically, here is a sneak peek at the API lifecycle:
+Se você quiser consumir o pacote programaticamente no seu próprio projeto, o ciclo de vida da engine funciona assim:
 
 ```typescript
 import { NameGenerator, CandidateFilter, Scorer, Ranker } from '@dittogen/core';
 
-// 1. Generate 
+// 1. Gera o lote inicial de forma determinística
 const generator = new NameGenerator({ roots: ['zen', 'core'], suffixes: ['ify', 'us'], count: 200 });
 const rawNames = generator.generate();
 
-// 2. Filter out bad combinations
+// 2. Aplica filtros eliminatórios duros
 const filter = new CandidateFilter({ minLength: 4, maxLength: 8 });
 const validNames = filter.filterList(rawNames);
 
-// 3. Score (0-100) based on memorability and pronunciation
+// 3. Classifica de 0-100 avaliando ratio de vogais e tamanho
 const scorer = new Scorer();
 const scoredNames = scorer.scoreList(validNames);
 
-// 4. Rank and enforce diversity (removes similar sounding duplicates)
+// 4. Ranqueia os melhores garantindo diversidade na lista
 const ranker = new Ranker();
 const topBrands = ranker.rankAndSelect(scoredNames, 10, true);
 ```
 
-## 📄 License
+## 📄 Licença
 
-This project is licensed under the MIT License.
+Projeto distribuído sob a licença MIT.
